@@ -1,0 +1,14 @@
+{
+    "name": "pathak-bios/emailverify",
+    "description": "A simple email verification of your signup",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "^5.2"
+    },
+    "authors": [
+        {
+            "name": "fristonio",
+            "email": "deepshpathak@gmail.com"
+        }
+    ]
+}
