@@ -15,7 +15,7 @@ if (isset($_POST["submit"])) {
 			$email=$_POST["email"];
 			$pass=sanitize($_POST["pass"]);
 			if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-				$sql="Select * from users where email='$email' and password='$pass'";
+				$sql="Select * from USERS where email='$email' and password='$pass'";
 				$result=$conn->query($sql);
 				if(!$result){
 					echo "<div class='phperror'>Cannot Login .... no user found ".$conn->error."</div>";
@@ -23,11 +23,11 @@ if (isset($_POST["submit"])) {
 				else{
 					echo "<div class='phpsuccess'>User Found .... Aish kar :P</div>";
 					while ($row=$result->fetch_assoc()) {
-						if ($row["status"]==1) {
+						if ($row["state"]==1) {
 							echo "<br><br>LOGGED IN";
 						}
 						else
-							if ($row["status"]==0) {
+							if ($row["state"]==0) {
 								echo "<br><br>A conformation mail has been sent to you .... verify it to log in";
 							}
 							else
@@ -49,7 +49,7 @@ if (isset($_POST["submit"])) {
 	</head>
 	<body>
 		<div class="formdiv">
-			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+			<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 				<label for="">E-Mail :</label><input type="text" placeholder="email" name="email"><br>
 				<label for="">Password :</label><input type="password" placeholder="password" name="pass"><br>
 				<input type="submit" value="login" name="submit">

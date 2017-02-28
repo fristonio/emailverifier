@@ -30,6 +30,7 @@
 			$name=sanitize($_POST["uname"]);
 			$hash=hash("sha256",time()+rand(100,500));
 			$verify="http://localhost/myserver/emailverify/verify.php?hash=".$hash;
+			echo $verify;
 			if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
 				$sql="INSERT into USERS(email,password,uname,hash) VALUES('$email','$pass','$name','$hash');";
 				$result=$conn->query($sql);
