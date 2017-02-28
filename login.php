@@ -15,13 +15,24 @@ if (isset($_POST["submit"])) {
 			$email=$_POST["email"];
 			$pass=sanitize($_POST["pass"]);
 			if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-				$sql="Select * from users where email=$email and password=$pass and state=1";
+				$sql="Select * from users where email='$email' and password='$pass'";
 				$result=$conn->query($sql);
 				if(!$result){
-					echo "<div class='phperror'>Data cannot be entered into the database .... An error occured ".$conn->error."</div>";
+					echo "<div class='phperror'>Cannot Login .... no user found ".$conn->error."</div>";
 				}
 				else{
-					echo "<div class='phpsuccess'>Link has been saved .... Aish kar :P</div>";
+					echo "<div class='phpsuccess'>User Found .... Aish kar :P</div>";
+					while ($row=$result->fetch_assoc()) {
+						if ($row["status"]==1) {
+							echo "<br><br>LOGGED IN";
+						}
+						else
+							if ($row["status"]==0) {
+								echo "<br><br>A conformation mail has been sent to you .... verify it to log in";
+							}
+							else
+								echo "<br><br>Sorry no info found ";
+					}
 				}
 			} else {
 			  echo("$email is not a valid email address");

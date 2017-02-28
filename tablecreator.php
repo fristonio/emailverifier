@@ -22,7 +22,9 @@
 									uname varchar(50) not null,
 									state int not null default '0',
 									hash varchar(80) not null,
-									CONSTRAINT UID UNIQUE(hash, password, email),
+									Constraint uid UNIQUE(email),
+									Constraint pass UNIQUE(password),
+									Constraint hash UNIQUE(hash),
 									Primary key (id));";
 		$result=$conn->query($query);
 		if($result==true)
