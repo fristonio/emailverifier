@@ -1,2 +1,4 @@
 /vendor/
 config.php
+.phpintel
+vendor
