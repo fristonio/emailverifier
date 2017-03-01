@@ -28,7 +28,7 @@
 			$email=$_POST["email"];
 			$pass=sanitize($_POST["pass"]);
 			$name=sanitize($_POST["uname"]);
-			$hash=hash("sha256",time()+rand(100,500));
+			$hash=hash("sha256",time()+$salt);
 			$verify="http://localhost/myserver/emailverify/verify.php?hash=".$hash;
 			echo $verify;
 			if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
